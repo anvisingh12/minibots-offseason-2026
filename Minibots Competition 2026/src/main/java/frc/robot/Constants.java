@@ -55,10 +55,10 @@ public class Constants {
     
     // Drive & OI Constants
     public static final class DriveConstants {
-        public static final int kFrontLeftMotorPort  = 1;
+        public static final int kFrontLeftMotorPort  = 9;
         public static final int kFrontRightMotorPort = 2;
         public static final int kRearLeftMotorPort   = 3;
-        public static final int kRearRightMotorPort  = 4;
+        public static final int kRearRightMotorPort  = 7;
     }
 
     public static final class OIConstants {

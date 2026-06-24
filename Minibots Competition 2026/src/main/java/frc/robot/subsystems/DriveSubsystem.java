@@ -12,33 +12,35 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
 
-    private final SparkMax m_frontLeft  = new SparkMax(DriveConstants.kFrontLeftMotorPort,  MotorType.kBrushless);
-    private final SparkMax m_frontRight = new SparkMax(DriveConstants.kFrontRightMotorPort, MotorType.kBrushless);
-    private final SparkMax m_rearLeft   = new SparkMax(DriveConstants.kRearLeftMotorPort,   MotorType.kBrushless);
-    private final SparkMax m_rearRight  = new SparkMax(DriveConstants.kRearRightMotorPort,  MotorType.kBrushless);
+    private final SparkMax m_frontLeft  = new SparkMax(DriveConstants.kFrontLeftMotorPort,  MotorType.kBrushed);
+    private final SparkMax m_frontRight = new SparkMax(DriveConstants.kFrontRightMotorPort, MotorType.kBrushed);
+    private final SparkMax m_rearLeft   = new SparkMax(DriveConstants.kRearLeftMotorPort,   MotorType.kBrushed);
+    private final SparkMax m_rearRight  = new SparkMax(DriveConstants.kRearRightMotorPort,  MotorType.kBrushed);
 
     private final MecanumDrive m_drive;
 
     public DriveSubsystem() {
         // Configure right side motors as inverted
         SparkMaxConfig rightConfig = new SparkMaxConfig();
-        rightConfig.inverted(true).idleMode(IdleMode.kBrake);
+        rightConfig.inverted(true).idleMode(IdleMode.kBrake)
+            .encoder.countsPerRevolution(538);
 
         SparkMaxConfig leftConfig = new SparkMaxConfig();
-        leftConfig.inverted(false).idleMode(IdleMode.kBrake);
+        leftConfig.inverted(false).idleMode(IdleMode.kBrake)
+            .encoder.countsPerRevolution(538);;
 
         m_frontLeft.configure(leftConfig,
-            ResetMode.kNoResetSafeParameters,
-            PersistMode.kNoPersistParameters);
+            ResetMode.kResetSafeParameters,
+            PersistMode.kPersistParameters);
         m_rearLeft.configure(leftConfig,
-            ResetMode.kNoResetSafeParameters,
-            PersistMode.kNoPersistParameters);
+            ResetMode.kResetSafeParameters,
+            PersistMode.kPersistParameters);
         m_frontRight.configure(rightConfig,
-            ResetMode.kNoResetSafeParameters,
-            PersistMode.kNoPersistParameters);
+            ResetMode.kResetSafeParameters,
+            PersistMode.kPersistParameters);
         m_rearRight.configure(rightConfig,
-            ResetMode.kNoResetSafeParameters,
-            PersistMode.kNoPersistParameters);
+            ResetMode.kResetSafeParameters,
+            PersistMode.kPersistParameters);
 
         m_drive = new MecanumDrive(m_frontLeft, m_rearLeft, m_frontRight, m_rearRight);
     }

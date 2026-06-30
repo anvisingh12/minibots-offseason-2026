@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.AutoCommands;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class RobotContainer {
@@ -46,6 +47,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return AutoCommands.basicAuto(m_driveSubsystem);
   }
 }
